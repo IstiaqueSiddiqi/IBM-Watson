@@ -11,7 +11,7 @@ const Header: FC<IProps> = props => {
     return (
         <>
             <header>
-                <AppBar position="fixed" elevation={0} color="primary">
+                <AppBar position="sticky" elevation={0} color="primary">
                     <Typography variant="h5" gutterBottom component="div" sx={{ p: 2, pb: 0 }}>
                         {pageTitle}
                     </Typography>

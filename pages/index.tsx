@@ -4,7 +4,7 @@ import PlayCircleIcon from '@material-ui/icons/PlayCircle';
 import Footer from '../components/Footer';
 import TextToSpeechForm from '../components/TextToSpeechForm';
 import { memo, useEffect, useRef, useState } from 'react';
-import { Container, List, ListItem, ListItemIcon, ListSubheader, ListItemText } from '@material-ui/core/';
+import { List, ListItem, ListItemIcon, ListSubheader, ListItemText } from '@material-ui/core/';
 
 export const cacheName = 'audio-cache';
 
@@ -19,24 +19,22 @@ const Home = () => {
 
   return (
     <>
-      <Container disableGutters>
-        <Head>
-          <title>Convert text to speech</title>
-          <meta name="description" content="Convert text to speech" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <Head>
+        <title>Convert text to speech</title>
+        <meta name="description" content="Convert text to speech" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <List sx={{ mb: 8, mt: 6 }}>
-          <ListSubheader sx={{ bgcolor: 'background.paper' }}>
-            Recent search
-          </ListSubheader>
-          {historyList.map(eachItem => {
-            return (
-              <Row key={eachItem.url} row={eachItem} />
-            )
-          })}
-        </List>
-      </Container>
+      <List sx={{ mb: 8 }}>
+        <ListSubheader sx={{ bgcolor: 'background.paper' }}>
+          Recent search
+        </ListSubheader>
+        {historyList.map(eachItem => {
+          return (
+            <Row key={eachItem.url} row={eachItem} />
+          )
+        })}
+      </List>
       <Footer>
         <TextToSpeechForm setHistoryList={setHistoryList} />
       </Footer>
