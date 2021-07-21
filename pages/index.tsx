@@ -26,7 +26,7 @@ const Home = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <List sx={{ mb: 2, mt: 6 }}>
+        <List sx={{ mb: 8, mt: 6 }}>
           <ListSubheader sx={{ bgcolor: 'background.paper' }}>
             Recent search
           </ListSubheader>

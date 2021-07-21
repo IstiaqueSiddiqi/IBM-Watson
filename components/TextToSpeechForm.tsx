@@ -40,7 +40,7 @@ const TextToSpeechForm: FC<IProps> = props => {
                 
                 if (response.ok) {
                     cache.put(request, response.clone());
-                    setHistoryList((oldState: Request[]) => [...oldState, request]);
+                    setHistoryList((oldState: Request[]) => [request, ...oldState]);
                 }
             }
 
@@ -64,7 +64,7 @@ const TextToSpeechForm: FC<IProps> = props => {
                                 fullWidth
                                 disableUnderline
                                 id="textToSpeechInput"
-                                placeholder="Max 50 chars"
+                                placeholder="Type your text..."
                                 type="text"
                                 error={true}
                                 {...register("textToSpeechInput", { required: true, maxLength: 50 })}
@@ -84,7 +84,7 @@ const TextToSpeechForm: FC<IProps> = props => {
                     </Box>
 
                     {errors.textToSpeechInput && (
-                        <FormHelperText id="helperText">Cannot be empty & max 50 chars allowed.</FormHelperText>
+                        <FormHelperText id="helperText">Cannot be empty & max 50 characters allowed.</FormHelperText>
                     )}
                 </form>
             </FormControl>
