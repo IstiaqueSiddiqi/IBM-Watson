@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import TextToSpeechV1 from 'ibm-watson/text-to-speech/v1'
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
     try {
+        const TextToSpeechV1 = await (await import('ibm-watson/text-to-speech/v1')).default;
         const textToSpeech = new TextToSpeechV1({ version: '2021-07-17' });
-        const synthesizeParams: TextToSpeechV1.SynthesizeWebSocketParams = {
+        const synthesizeParams = {
             text: req.query.text.toString(),
             accept: 'audio/mp3',
             voice: 'en-US_MichaelV3Voice'

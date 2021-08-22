@@ -8,10 +8,10 @@ interface IAppThemeProviderProps {
 /**
  * App theme
  */
-const getTheme = (mode = 'light') => {
+export const getTheme = (mode = 'light') => {
   const defaultTheme: any = {
     palette: {
-      mode: 'light',
+      mode,
       primary: {
         main: '#009688',
         light: '#52c7b8',
@@ -31,13 +31,15 @@ const getTheme = (mode = 'light') => {
   return createTheme(defaultTheme);
 };
 
-const ThemeContext = createContext<any>([getTheme(), () => { }]);
+export const ThemeContext = createContext<any>(getTheme());
 
 const useThemeContext = () => {
-  const [appTheme, setAppTheme] = useContext<any>(ThemeContext);
+  const { appTheme, setAppTheme } = useContext(ThemeContext);
 
   const handleThemeContext = (darkMode: boolean) => {
-    setAppTheme(getTheme(darkMode ? 'dark' : 'light'));
+    const mode = darkMode ? 'dark' : 'light';
+    setAppTheme(getTheme(mode));
+    localStorage.setItem('themeMode', mode);
   };
 
   return { appTheme, enableDarkTheme: handleThemeContext };
@@ -47,7 +49,7 @@ const AppThemeProvider: FC<IAppThemeProviderProps> = ({ children }) => {
   const [appTheme, setAppTheme] = useState<any>(getTheme());
 
   return (
-    <ThemeContext.Provider value={[appTheme, setAppTheme]}>
+    <ThemeContext.Provider value={{ appTheme, setAppTheme }}>
       {children}
     </ThemeContext.Provider>
   );
